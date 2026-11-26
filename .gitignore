@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+.vercel/
+__pycache__/
+.env
+.env.*
+/public/safari-preview.html

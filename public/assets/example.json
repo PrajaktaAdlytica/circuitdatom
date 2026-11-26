@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "watermark": "DEMO · SIMULATED DATA",
+  "dataset_type": "fictional",
+  "sample_generated_at": "2026-10-28T15:20:00Z",
+  "sources": [
+    {"id": "DS-REF-C6", "title": "REF-C6 connector datasheet", "version": "Rev 4", "version_date": "2026-09-03"},
+    {"id": "DS-ALT-C6", "title": "ALT-C6 connector datasheet", "version": "Rev 2", "version_date": "2026-10-15"},
+    {"id": "BRD-ORB240", "title": "ORB-240 verified board library record", "version": "Rev D", "version_date": "2026-10-19"},
+    {"id": "DS-ALT-C6B", "title": "ALT-C6B connector datasheet", "version": "Rev 1", "version_date": "2026-10-21"}
+  ],
+  "cases": [
+    {
+      "id": "CD-019",
+      "account": "Aster Relay Works",
+      "created_at": "2026-10-26T09:00:00Z",
+      "approved_part": "REF-C6",
+      "candidate_part": "ALT-C6",
+      "package_code": "MX6-SMT",
+      "board": "ORB-240",
+      "board_revision": "Rev D",
+      "designator": "J14",
+      "findings": [
+        {
+          "id": "CD-019-F1",
+          "origin": "Simulated AI-assisted datasheet extraction and board pin map",
+          "proposed_observation": "Pin 4 changes from ENABLE to FAULT_N. ORB-240 Rev D routes J14 pin 4 to ENABLE.",
+          "disposition": "confirmed",
+          "unresolved_gap": null,
+          "source_references": [
+            {"id": "DS-REF-C6", "locator": "p. 2, table 1, row 4", "excerpt": "Pin 4 — ENABLE"},
+            {"id": "DS-ALT-C6", "locator": "p. 3, table 2, row 4", "excerpt": "Pin 4 — FAULT_N"},
+            {"id": "BRD-ORB240", "locator": "J14 pin map", "excerpt": "J14.4 — ENABLE"}
+          ]
+        },
+        {
+          "id": "CD-019-F2",
+          "origin": "Simulated board clearance comparison",
+          "proposed_observation": "Candidate recommended solder-mask opening of 3.40 mm exceeds the board maximum of 3.20 mm by 0.20 mm. Approved part reference is 3.00 mm.",
+          "disposition": "confirmed",
+          "unresolved_gap": null,
+          "source_references": [
+            {"id": "DS-REF-C6", "locator": "p. 6, fig. 5", "excerpt": "Recommended mask opening — 3.00 mm"},
+            {"id": "DS-ALT-C6", "locator": "p. 7, fig. 6", "excerpt": "Recommended mask opening — 3.40 mm"},
+            {"id": "BRD-ORB240", "locator": "J14 SM-014", "excerpt": "Maximum mask opening — 3.20 mm"}
+          ]
+        }
+      ],
+      "review": {
+        "assigned_name": "Mira Sen",
+        "role": "Component engineer",
+        "decision": "rejected",
+        "display_label": "Rejected for Rev D at J14",
+        "scope": "ALT-C6 at J14 on ORB-240 Rev D",
+        "reason": "Confirmed Pin 4 function mismatch and solder-mask clearance conflict.",
+        "decision_at": "2026-10-27T10:15:00Z",
+        "history": [
+          {"at": "2026-10-26T09:00:00Z", "state": "awaiting_reviewer"},
+          {"at": "2026-10-27T10:15:00Z", "state": "rejected", "actor": "Mira Sen"}
+        ]
+      },
+      "handoff": {
+        "next_action": "Preserve the evidence and share rejection with sourcing in the external workflow.",
+        "owner": "Mira Sen",
+        "export_status": "exported_example",
+        "exported_at": "2026-10-28T15:20:00Z"
+      }
+    },
+    {
+      "id": "CD-020",
+      "account": "Aster Relay Works",
+      "created_at": "2026-10-26T09:15:00Z",
+      "approved_part": "REF-C6",
+      "candidate_part": "ALT-C6B",
+      "package_code": "MX6-SMT",
+      "board": "ORB-240",
+      "board_revision": "Rev D",
+      "designator": "J22",
+      "findings": [
+        {
+          "id": "CD-020-F1",
+          "origin": "Simulated source completeness check",
+          "proposed_observation": "Maximum rear latch overhang is absent. The candidate cannot be evaluated against the 1.80 mm board limit.",
+          "disposition": "needs_evidence",
+          "unresolved_gap": "Authorized dimensioned latch drawing with maximum rear overhang.",
+          "source_references": [
+            {"id": "DS-ALT-C6B", "locator": "p. 5, fig. 3", "excerpt": "Drawing omits maximum rear latch overhang."},
+            {"id": "BRD-ORB240", "locator": "J22 KO-022", "excerpt": "Maximum rear latch overhang — 1.80 mm"}
+          ]
+        }
+      ],
+      "review": {
+        "assigned_name": "Mira Sen",
+        "role": "Component engineer",
+        "decision": "open",
+        "display_label": "Needs evidence · Awaiting dimensioned latch drawing",
+        "scope": "ALT-C6B at J22 on ORB-240 Rev D",
+        "reason": "Candidate drawing omits the maximum rear latch overhang.",
+        "decision_at": "2026-10-27T11:05:00Z",
+        "history": [
+          {"at": "2026-10-26T09:15:00Z", "state": "needs_evidence"},
+          {"at": "2026-10-27T11:05:00Z", "state": "left_open", "actor": "Mira Sen"}
+        ]
+      },
+      "handoff": {
+        "next_action": "Request an authorized drawing with maximum rear latch overhang.",
+        "owner": "Tessa Vale · ECAD library manager",
+        "export_status": "exported_unresolved_example",
+        "exported_at": "2026-10-28T15:20:00Z"
+      }
+    }
+  ]
+}
